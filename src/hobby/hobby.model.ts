@@ -1,21 +1,18 @@
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @ObjectType()
 @Schema()
-export class Cat {
+export class Hobby {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;
 
   @Field(() => String)
   @Prop()
-  name: String;
-
-  // @Field({ nullable: true })
-  // age: number;
+  name: string;
 }
 
-export type CatDocument = Cat & Document;
+export type HobbyDocument = Hobby & Document;
 
-export const CatSchema = SchemaFactory.createForClass(Cat);
+export const HobbySchema = SchemaFactory.createForClass(Hobby);

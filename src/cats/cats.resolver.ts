@@ -5,14 +5,9 @@ import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { GetCatDto } from './dto/get-cat.dto';
 
-@Resolver()
+@Resolver(() => Cat)
 export class CatsResolver {
   constructor(private catsService: CatsService) {}
-
-  @Query(() => String)
-  async hello() {
-    return 'hello';
-  }
 
   @Query(() => Cat)
   async getCat(@Args() getCatDto: GetCatDto): Promise<Cat> {

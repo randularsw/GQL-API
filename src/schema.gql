@@ -3,22 +3,44 @@
 # ------------------------------------------------------
 
 type Cat {
-  id: Float!
+  _id: String!
   name: String!
-  age: Float!
+}
+
+type Hobby {
+  _id: String!
+  name: String!
 }
 
 type Query {
-  hello: String!
-  getCat(id: Float!): Cat!
+  getCat(id: String!): Cat!
   getCats: [Cat!]!
+  hobby(_id: String!): Hobby!
+  hobbies(filters: ListHobbyInput): [Hobby!]!
+}
+
+input ListHobbyInput {
+  _id: String
+  name: String
 }
 
 type Mutation {
   createCat(cat: CreateCatDto!): Cat!
+  createHobby(payload: CreateHobbyInput!): Hobby!
+  updateHobby(payload: UpdateHobbyInput!): Hobby!
+  deleteHobby(_id: String!): Hobby!
 }
 
 input CreateCatDto {
   name: String!
   age: Float!
+}
+
+input CreateHobbyInput {
+  name: String!
+}
+
+input UpdateHobbyInput {
+  _id: String!
+  name: String
 }
